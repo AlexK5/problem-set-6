@@ -11,6 +11,12 @@
  */
 
 function sayHello() {
+const canvas = document.getElementById('canvas1')
+const ctx = canvas.getContext('2d');
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.font = '48px sans-serif';
+ctx.strokeText('Hello, World!', 10, 50);
+//https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
 }
 
@@ -38,7 +44,32 @@ function sayHello() {
  */
 
 function drawRectangle() {
-
+  const canvas = document.getElementById('canvas2')
+  const ctx = canvas.getContext('2d');
+  let height = 0
+  let width = 0
+  let x = 10000
+  let y = 10000
+  height = Number(prompt("Height:"));
+  width = Number(prompt("Width:"));
+  x = Number(prompt("X:"));
+  y = Number(prompt("Y:"));
+if(isNaN(height)==true || isNaN(width)==true || isNaN(x)==true || isNaN(y)==true){
+  alert("One of your inputs is not a number.");
+}else if(width<1){
+  alert("Your width is too small.");
+}else if(height<1){
+  alert("Your height is too small.");
+}else if(x<5){
+  alert("Your x-coordinate is too small.");
+}else if(y<5){
+  alert("Your y-coordinate is too small.");
+}else if(height+y>512 || width+x>1024){
+  alert("This rectangle will not fit on the canvas.");
+}else{
+  ctx.rect(x,y,width,height);
+  ctx.stroke();
+}
 }
 
 /*
@@ -67,7 +98,16 @@ function drawRectangle() {
  */
 
 function drawColoredRectangle() {
-
+const canvas = document.getElementById('canvas3');
+const ctx = canvas.getContext('2d');
+let color = prompt("Color:");
+let supported = ['black','blue','green','orange','purple','red','yellow'];
+if(supported.includes(color)==true){
+  ctx.fillStyle= color;
+  ctx.fillRect(10,10,100,50);
+}else{
+  alert(`${color} is not a unsupported color.`)
+}
 }
 
 /*
@@ -100,7 +140,12 @@ function drawColoredRectangle() {
  */
 
 function drawTriangle() {
-
+  const canvas = document.getElementById('canvas3');
+  const ctx = canvas.getContext('2d');
+  let sides=[]
+  sides.push(prompt("Side 1:"));
+  sides.push(prompt("Side 2:"));
+  sides.push(prompt("Side 3:"));
 }
 
 /*
