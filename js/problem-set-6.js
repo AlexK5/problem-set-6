@@ -46,6 +46,7 @@ ctx.strokeText('Hello, World!', 10, 50);
 function drawRectangle() {
   const canvas = document.getElementById('canvas2')
   const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
   let height = 0
   let width = 0
   let x = 10000
@@ -100,6 +101,7 @@ if(isNaN(height)==true || isNaN(width)==true || isNaN(x)==true || isNaN(y)==true
 function drawColoredRectangle() {
 const canvas = document.getElementById('canvas3');
 const ctx = canvas.getContext('2d');
+ctx.clearRect(0,0,canvas.width,canvas.height);
 let color = prompt("Color:");
 let supported = ['black','blue','green','orange','purple','red','yellow'];
 if(supported.includes(color)==true){
@@ -140,12 +142,29 @@ if(supported.includes(color)==true){
  */
 
 function drawTriangle() {
-  const canvas = document.getElementById('canvas3');
+  const canvas = document.getElementById('canvas4');
   const ctx = canvas.getContext('2d');
-  let sides=[]
-  sides.push(prompt("Side 1:"));
-  sides.push(prompt("Side 2:"));
-  sides.push(prompt("Side 3:"));
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  let sides=[];
+  sides.push(Number(prompt("Side 1:")));
+  sides.push(Number(prompt("Side 2:")));
+  sides.push(Number(prompt("Side 3:")));
+  sides.sort(function(a,b) {return a-b})
+  if(isNaN(sides[0])==true || isNaN(sides[1])==true || isNaN(sides[2])==true){
+    alert("One of your inputs is not a number.");
+  }else if(sides[0]**2+sides[1]**2!=sides[2]**2){
+    alert("This is not a valid right triangle.")
+  }else if(sides[0]+10>canvas.height || sides[1]+10>canvas.width){
+    alert("The triangle will not fit on the canvas.")
+  }else{
+  ctx.beginPath();
+  ctx.moveTo(10,10);
+  ctx.lineTo(10,10+sides[0]);
+  ctx.lineTo(10+sides[1],10+sides[0]);
+  ctx.closePath();
+  ctx.lineWidth=1;
+  ctx.stroke();
+  }
 }
 
 /*
@@ -168,7 +187,21 @@ function drawTriangle() {
  */
 
 function drawSmileyFace() {
-
+  const canvas = document.getElementById('canvas4');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  let radius=Number(prompt("Radius:"));
+  if(radius*2>Math.min(canvas.width,canvas.height)){
+    alert("The smiley face will not fit on the canvas.");
+  }else if(radius<1){
+    alert("Your radius is too small.");
+  }else{
+    ctx.beginPath();
+    ctx.arc(10+radius,10+radius,radius,0,Math.PI*2,false);
+    ctx.closePath();
+    ctx.lineWidth=1;
+    ctx.stroke();
+  }
 }
 
 /*
