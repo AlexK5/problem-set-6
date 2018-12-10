@@ -187,18 +187,25 @@ function drawTriangle() {
  */
 
 function drawSmileyFace() {
-  const canvas = document.getElementById('canvas4');
+  const canvas = document.getElementById('canvas5');
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0,0,canvas.width,canvas.height);
   let radius=Number(prompt("Radius:"));
-  if(radius*2>Math.min(canvas.width,canvas.height)){
+  if(isNaN(radius==true)){
+    alert("Your input is not a number.");
+  }else if(radius>250){
     alert("The smiley face will not fit on the canvas.");
   }else if(radius<1){
     alert("Your radius is too small.");
   }else{
     ctx.beginPath();
-    ctx.arc(10+radius,10+radius,radius,0,Math.PI*2,false);
-    ctx.closePath();
+    ctx.arc(10+radius,10+radius,radius,0,Math.PI*2);
+    ctx.moveTo(radius*1.7+10,radius+10);
+    ctx.arc(10+radius,10+radius,radius*0.7,0,Math.PI,false);
+    ctx.moveTo(radius*0.6+10,radius*0.5+10);
+    ctx.arc(10+radius*0.5,10+radius*0.5,radius*0.1,0,Math.PI*2);
+    ctx.moveTo(radius*1.6+10,radius*0.5+10);
+    ctx.arc(10+radius*1.5,10+radius*0.5,radius*0.1,0,Math.PI*2);
     ctx.lineWidth=1;
     ctx.stroke();
   }
@@ -223,7 +230,30 @@ function drawSmileyFace() {
  */
 
 function drawStar() {
-
+  const canvas = document.getElementById('canvas6');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  let outer = Number(prompt("Outer Radius:"));
+  let inner = Number(prompt("Inner Radius:"));
+  if(isNaN(outer)==true || isNaN(inner)==true){
+    alert("One of your inputs is not a number.");
+  }else if(outer<2){
+    alert("Your outer radius is too small.");
+  }else if(inner<1){
+    alert("Your inner radius is too small.");
+  }else if(inner>=outer){
+    alert("Your outer radius must be larger than your inner radius.");
+  }else{
+    ctx.beginPath();
+    ctx.moveTo(125,125-outer);
+    for(let i=0; i<5; i++){
+      ctx.lineTo(outer*Math.cos(Math.PI*(0.5-0.4*i))+125,125-outer*Math.sin(Math.PI*(0.5-0.4*i)));
+      ctx.lineTo(inner*Math.cos(Math.PI*(0.3-0.4*i))+125,125-inner*Math.sin(Math.PI*(0.3-0.4*i)));
+    }
+    ctx.closePath();
+    ctx.lineWidth=1;
+    ctx.stroke();
+  }
 }
 
 /*
@@ -242,7 +272,13 @@ function drawStar() {
  */
 
 function drawStopSign() {
-
+  const canvas = document.getElementById('canvas6');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.beginPath();
+  const center = 10+40/Math.tan(Math.PI/8);
+  const hypotenuse=40/Math.sin(Math.PI/8);
+  ctx.moveTo(center-40),10);
 }
 
 /*
