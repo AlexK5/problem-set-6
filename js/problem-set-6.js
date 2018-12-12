@@ -274,11 +274,20 @@ function drawStar() {
 function drawStopSign() {
   const canvas = document.getElementById('canvas6');
   const ctx = canvas.getContext('2d');
+  const center = 10+40/Math.tan(Math.PI/8);
+  let x = center-40;
+  let y = 10;
+  let angle = 0;
   ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.beginPath();
-  const center = 10+40/Math.tan(Math.PI/8);
-  const hypotenuse=40/Math.sin(Math.PI/8);
-  ctx.moveTo(center-40),10);
+  ctx.moveTo((center-40),10);
+  for(let i = 0; i<8; i++){
+    ctx.lineTo(x+80*Math.cos(angle),y-80*Math.sin(angle));
+    angle-=Math.PI/4;
+  }
+  ctx.closePath();
+  ctx.lineWidth=1;
+  ctx.stroke();
 }
 
 /*
