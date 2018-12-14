@@ -191,7 +191,7 @@ function drawSmileyFace() {
   const ctx = canvas.getContext('2d');
   ctx.clearRect(0,0,canvas.width,canvas.height);
   let radius=Number(prompt("Radius:"));
-  if(isNaN(radius==true)){
+  if(isNaN(radius)==true){
     alert("Your input is not a number.");
   }else if(radius>250){
     alert("The smiley face will not fit on the canvas.");
@@ -272,22 +272,29 @@ function drawStar() {
  */
 
 function drawStopSign() {
-  const canvas = document.getElementById('canvas6');
+  const canvas = document.getElementById('canvas7');
   const ctx = canvas.getContext('2d');
-  const center = 10+40/Math.tan(Math.PI/8);
-  let x = center-40;
+  let x = 10+40*Math.sqrt(2);
   let y = 10;
   let angle = 0;
   ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.beginPath();
-  ctx.moveTo((center-40),10);
+  ctx.moveTo(x,y);
   for(let i = 0; i<8; i++){
     ctx.lineTo(x+80*Math.cos(angle),y-80*Math.sin(angle));
+    x+=80*Math.cos(angle);
+    y-=80*Math.sin(angle);
     angle-=Math.PI/4;
   }
   ctx.closePath();
   ctx.lineWidth=1;
   ctx.stroke();
+  ctx.fillStyle="red";
+  ctx.fill();
+  ctx.fillStyle="white";
+  ctx.font = '65px sans-serif';
+  ctx.fillText('STOP', 18, 73+40*Math.sqrt(2));
+
 }
 
 /*
@@ -309,7 +316,32 @@ function drawStopSign() {
  */
 
 function drawPyramid() {
-
+  const canvas = document.getElementById('canvas8');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  let length=Number(prompt("Length:"));
+  if(isNaN(length)==true){
+    alert("Your input is not a number.");
+  }else if(length>100){
+    alert("The pyramid will not fit on the canvas.")
+  }else{
+    ctx.beginPath();
+    let x=10;
+    let prevx=10;
+    let y=canvas.height-10-length;
+    for(let j = 0; j<5; j++){
+      for(let i = 0; i<5-j; i++){
+        ctx.moveTo(x,y);
+        ctx.rect(x,y,length,length);
+        x+=length;
+      }
+      y-=length
+      prevx+=length/2;
+      x=prevx;
+    }
+    ctx.lineWidth=1;
+    ctx.stroke();
+  }
 }
 
 /*
@@ -341,6 +373,32 @@ function drawPyramid() {
  * unsupported color.
  */
 
-function drawHouse() {
-
-}
+ function drawHouse() {
+ const canvas = document.getElementById('canvas9');
+ const ctx = canvas.getContext('2d');
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ let house = prompt("House Color:");
+ let door = prompt("Front Door Color:")
+ let supported = ['blue','brown','green','orange','purple','red','yellow'];
+ if(supported.includes(house)==true && supported.includes(door)){
+   ctx.fillStyle= house;
+   ctx.fillRect(150,canvas.height-460,700,450);
+   ctx.strokeRect(150,canvas.height-460,700,450);
+   ctx.fillStyle="gray";
+   ctx.moveTo(150,canvas.height-460);
+   ctx.lineTo(500,canvas.height-735);
+   ctx.lineTo(850,canvas.height-460);
+   ctx.fill();
+   ctx.stroke();
+   ctx.fillStyle="light-blue";
+   let windowx= [300,600,300,600];
+   let windowy= [canvas.height-360,canvas.height-360,canvas.height-560,canvas.height-560];
+   for(let i = 0; i<4; i++){
+     ctx.moveTo(windowx[i],windowy[i]);
+     ctx.fillRect(windowx[i],windowy[i],100,100);
+     ctx.strokeRect(windowx[i],windowy[i],100,100);
+   }
+ }else{
+   alert(`One of your colors is not supported.`)
+ }
+ }
