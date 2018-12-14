@@ -390,14 +390,22 @@ function drawPyramid() {
    ctx.lineTo(850,canvas.height-460);
    ctx.fill();
    ctx.stroke();
-   ctx.fillStyle="light-blue";
-   let windowx= [300,600,300,600];
-   let windowy= [canvas.height-360,canvas.height-360,canvas.height-560,canvas.height-560];
+   ctx.fillStyle="lightskyblue";
+   let windowx= [275,645,275,645];
+   let windowy= [canvas.height-385,canvas.height-385,canvas.height-135,canvas.height-135];
    for(let i = 0; i<4; i++){
      ctx.moveTo(windowx[i],windowy[i]);
-     ctx.fillRect(windowx[i],windowy[i],100,100);
-     ctx.strokeRect(windowx[i],windowy[i],100,100);
+     ctx.fillRect(windowx[i],windowy[i],80,80);
+     ctx.strokeRect(windowx[i],windowy[i],80,80);
    }
+   ctx.fillStyle=door;
+   ctx.fillRect(450,canvas.height-160,100,150);
+   ctx.strokeRect(450,canvas.height-160,100,150);
+   ctx.fillStyle="gold";
+   ctx.moveTo(544,canvas.height-85);
+   ctx.arc(537,canvas.height-85,7,0,Math.PI*2);
+   ctx.fill();
+   ctx.stroke();
  }else{
    alert(`One of your colors is not supported.`)
  }
