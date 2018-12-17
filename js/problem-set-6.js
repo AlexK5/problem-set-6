@@ -384,12 +384,6 @@ function drawPyramid() {
    ctx.fillStyle= house;
    ctx.fillRect(150,canvas.height-460,700,450);
    ctx.strokeRect(150,canvas.height-460,700,450);
-   ctx.fillStyle="gray";
-   ctx.moveTo(150,canvas.height-460);
-   ctx.lineTo(500,canvas.height-735);
-   ctx.lineTo(850,canvas.height-460);
-   ctx.fill();
-   ctx.stroke();
    ctx.fillStyle="lightskyblue";
    let windowx= [275,645,275,645];
    let windowy= [canvas.height-385,canvas.height-385,canvas.height-135,canvas.height-135];
@@ -404,6 +398,14 @@ function drawPyramid() {
    ctx.fillStyle="gold";
    ctx.moveTo(544,canvas.height-85);
    ctx.arc(537,canvas.height-85,7,0,Math.PI*2);
+   ctx.fill();
+   ctx.stroke();
+   ctx.fillStyle="gray";
+   ctx.beginPath();
+   ctx.moveTo(150,canvas.height-460);
+   ctx.lineTo(500,canvas.height-735);
+   ctx.lineTo(850,canvas.height-460);
+   ctx.closePath();
    ctx.fill();
    ctx.stroke();
  }else{
