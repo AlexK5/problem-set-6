@@ -68,6 +68,7 @@ if(isNaN(height)==true || isNaN(width)==true || isNaN(x)==true || isNaN(y)==true
 }else if(height+y>512 || width+x>1024){
   alert("This rectangle will not fit on the canvas.");
 }else{
+  ctx.clearRect(0,0,canvas.width,canvas.height);  
   ctx.rect(x,y,width,height);
   ctx.stroke();
 }
