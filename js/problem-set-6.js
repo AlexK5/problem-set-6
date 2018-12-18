@@ -82,9 +82,9 @@ if(isNaN(height)==true || isNaN(width)==true || isNaN(x)==true || isNaN(y)==true
   alert("Your x-coordinate is too small.");
 }else if(y<5){
   alert("Your y-coordinate is too small.");
-}else if(height+y>512 || width+x>1024){
+}else if(height+y>511 || width+x>1023){
   alert("This rectangle will not fit on the canvas.");
-}else{  
+}else{
   ctx.rect(x,y,width,height);
   ctx.stroke();
 }
