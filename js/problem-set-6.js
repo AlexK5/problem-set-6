@@ -16,7 +16,6 @@ const ctx = canvas.getContext('2d');
 ctx.clearRect(0,0,canvas.width,canvas.height);
 ctx.font = '48px sans-serif';
 ctx.strokeText('Hello, World!', 10, 50);
-//https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
 
 }
 
@@ -55,22 +54,22 @@ function drawRectangle() {
   width = Number(prompt("Width:"));
   x = Number(prompt("X:"));
   y = Number(prompt("Y:"));
-if(isNaN(height)==true || isNaN(width)==true || isNaN(x)==true || isNaN(y)==true){
-  alert("One of your inputs is not a number.");
-}else if(width<1){
-  alert("Your width is too small.");
-}else if(height<1){
-  alert("Your height is too small.");
-}else if(x<5){
-  alert("Your x-coordinate is too small.");
-}else if(y<5){
-  alert("Your y-coordinate is too small.");
-}else if(height+y>512 || width+x>1024){
-  alert("This rectangle will not fit on the canvas.");
-}else{
-  ctx.rect(x,y,width,height);
-  ctx.stroke();
-}
+  if(isNaN(height)==true || isNaN(width)==true || isNaN(x)==true || isNaN(y)==true){
+    alert("One of your inputs is not a number.");
+  }else if(width<1){
+    alert("Your width is too small.");
+  }else if(height<1){
+    alert("Your height is too small.");
+  }else if(x<5){
+    alert("Your x-coordinate is too small.");
+  }else if(y<5){
+    alert("Your y-coordinate is too small.");
+  }else if(height+y>511 || width+x>1023){
+    alert("This rectangle will not fit on the canvas.");
+  }else{
+    ctx.rect(x,y,width,height);
+    ctx.stroke();
+  }
 }
 
 /*
@@ -154,7 +153,7 @@ function drawTriangle() {
     alert("One of your inputs is not a number.");
   }else if(sides[0]**2+sides[1]**2!=sides[2]**2){
     alert("This is not a valid right triangle.")
-  }else if(sides[0]+10>canvas.height || sides[1]+10>canvas.width){
+  }else if(sides[0]+10>=canvas.height || sides[1]+10>=canvas.width){
     alert("The triangle will not fit on the canvas.")
   }else{
   ctx.beginPath();
