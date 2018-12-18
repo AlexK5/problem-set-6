@@ -54,6 +54,7 @@ function drawRectangle() {
   width = Number(prompt("Width:"));
   x = Number(prompt("X:"));
   y = Number(prompt("Y:"));
+<<<<<<< HEAD
   if(isNaN(height)==true || isNaN(width)==true || isNaN(x)==true || isNaN(y)==true){
     alert("One of your inputs is not a number.");
   }else if(width<1){
@@ -70,6 +71,24 @@ function drawRectangle() {
     ctx.rect(x,y,width,height);
     ctx.stroke();
   }
+=======
+if(isNaN(height)==true || isNaN(width)==true || isNaN(x)==true || isNaN(y)==true){
+  alert("One of your inputs is not a number.");
+}else if(width<1){
+  alert("Your width is too small.");
+}else if(height<1){
+  alert("Your height is too small.");
+}else if(x<5){
+  alert("Your x-coordinate is too small.");
+}else if(y<5){
+  alert("Your y-coordinate is too small.");
+}else if(height+y>512 || width+x>1024){
+  alert("This rectangle will not fit on the canvas.");
+}else{  
+  ctx.rect(x,y,width,height);
+  ctx.stroke();
+}
+>>>>>>> 3c4a83e5cbf4a6cd5da6e99be19058ff6c7d4aa5
 }
 
 /*
